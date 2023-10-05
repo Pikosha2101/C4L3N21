@@ -14,11 +14,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.Holder>() {
         private val binding = RecyclerViewItemBinding.bind(item)
         fun bind(recyclerModel: RecyclerModel) = with(binding){
             imageView.setImageResource(recyclerModel.image)
-            nameTextView.text = recyclerModel.name
-            ratingTextView.text = recyclerModel.rating.toString()
-            countLineTextView.text = recyclerModel.countLine.toString()
-            countProjTextView.text = recyclerModel.countProg.toString()
-            teamTextView.text = recyclerModel.team
+            textView.text = recyclerModel.text
         }
     }
 
@@ -38,7 +34,11 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.Holder>() {
             items[position]
         )
     }
-    fun createList(list: List<RecyclerModel>) {
-        items = list
+    fun createList(list1 : ArrayList<String>, list2: ArrayList<Int>) {
+        val items1: ArrayList<RecyclerModel> = ArrayList<RecyclerModel>()
+        for (i in 1..<list1.size){
+            items1.add(RecyclerModel(list1[i], list2[i]))
+        }
+        items = items1
     }
 }
